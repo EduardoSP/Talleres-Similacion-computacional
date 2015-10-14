@@ -1,3 +1,3 @@
 # Talleres-Similacion-computacional
 
-Carpeta Taller 2
+En este epacio de repositorio estara alojado los talleres de simulacion computacional 
