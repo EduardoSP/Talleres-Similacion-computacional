@@ -67,6 +67,9 @@ def Evaluate_pos_rangeRows(datum, dimention_classes, type_pos):
 def Calculate_value_frequencyTable(dimention_classes,list_pseudoRandom):
 	i = 0
 	while i <= (len(list_pseudoRandom) - 1 ): # clicle 'for' for browse the list of pseudo random
+		if i == len(list_pseudoRandom)- 1:
+			#if is odd then It does not take into account the latest data
+			break
 		datum_row= list_pseudoRandom[i]
 		datum_col = list_pseudoRandom[i + 1]
 		i += 2
@@ -77,7 +80,7 @@ def Calculate_value_frequencyTable(dimention_classes,list_pseudoRandom):
 #executing main 
 if (__name__=="__main__"):
 		#list_pseudoRandom = list_test #Temporary for tests
-		n = 1200
+		n = 3
 		list_pseudoRandom = Pseudo_random(n,2)# Calling function for the  Creation of pseudo random numbers
 		data_quantity = len(list_pseudoRandom) #variable for the data quantity pseudo random
 		#data_quantity = 1200 # Temporary for test
@@ -104,3 +107,5 @@ if (__name__=="__main__"):
 		Calculate_chiquadrate_values(frequency_table, chiQuadrate_table, FE, dimention_classes)# Calling funtion for calculate the chi quadrate values, according the frequency table
 		X_Calc = Add_values_X_calc(dimention_classes)
 		print ("Valor del chi cuadrado calculado " + str(X_Calc))
+		print(list_pseudoRandom)
+		print (frequency_table)	
