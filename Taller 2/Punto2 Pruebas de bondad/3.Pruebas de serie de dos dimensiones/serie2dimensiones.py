@@ -57,7 +57,7 @@ def Evaluate_pos_rangeRows(datum, dimention_classes, type_pos):
 	values_range=['0','0']
 	for i in range(dimention_classes + 1):#adds 1, because not it count the first row(the value is zero)
 		values_range = Extract_value(type_pos, i) # calling function for to extract the position number of the row or the column, according the type_pos
-		if datum >= float(values_range[0]) and datum <= float(values_range[1]) : #esta generando el numero 1 aleatorio
+		if datum >= float(values_range[0]) and datum < float(values_range[1]) : #esta generando el numero 1 aleatorio
 			result_position = i # assign the position of the rows  the variable  result_position
 	return result_position
 
@@ -66,7 +66,7 @@ def Evaluate_pos_rangeRows(datum, dimention_classes, type_pos):
 #function for to calculate the values of the frequency table with the events happening together(pairs)
 def Calculate_value_frequencyTable(dimention_classes,list_pseudoRandom):
 	i = 0
-	while i <= (len(list_pseudoRandom) - 1 ): # clicle 'for' for browse the list of pseudo random
+	while i <= (len(list_pseudoRandom) - 1 ): # cicle 'for' for browse the list of pseudo random
 		if i == len(list_pseudoRandom)- 1:
 			#if is odd then It does not take into account the latest data
 			break
@@ -75,13 +75,16 @@ def Calculate_value_frequencyTable(dimention_classes,list_pseudoRandom):
 		i += 2
 		pos_row = Evaluate_pos_rangeRows(datum_row, dimention_classes, 0)# calling funtion for to Extract position of row
 		pos_column = Evaluate_pos_rangeRows(datum_col, dimention_classes, 1) #Calling function for Extract position of column
+		if pos_row == 0 or pos_column==0:
+			print "pos fila "+ str(pos_row)+ "dato fila es "+ str(datum_row)+ "posicion en la lista es "+ str(i)
+			print "pos col "+ str(pos_column)+ "dato colum es "+ str(datum_col)+ "posicion en la lista es "+ str(i + 1)
 		frequency_table[pos_row][pos_column] += 1 #adds 1, the frequency table, according the position of the row and column 
  
 #executing main 
 if (__name__=="__main__"):
 		#list_pseudoRandom = list_test #Temporary for tests
-		n = 3
-		list_pseudoRandom = Pseudo_random(n,2)# Calling function for the  Creation of pseudo random numbers
+		n = 3000
+		list_pseudoRandom = Pseudo_random(n,3)# Calling function for the  Creation of pseudo random numbers
 		data_quantity = len(list_pseudoRandom) #variable for the data quantity pseudo random
 		#data_quantity = 1200 # Temporary for test
 		pairs_number = round (float (data_quantity ) / 2) # variable for the pairs number
@@ -107,5 +110,5 @@ if (__name__=="__main__"):
 		Calculate_chiquadrate_values(frequency_table, chiQuadrate_table, FE, dimention_classes)# Calling funtion for calculate the chi quadrate values, according the frequency table
 		X_Calc = Add_values_X_calc(dimention_classes)
 		print ("Valor del chi cuadrado calculado " + str(X_Calc))
-		print(list_pseudoRandom)
-		print (frequency_table)	
+		#print(list_pseudoRandom)
+		#print (frequency_table)	
