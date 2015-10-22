@@ -1,0 +1,2 @@
+Para que funcione la creacion de el archivo excel usar
+pip install openpyxl 
